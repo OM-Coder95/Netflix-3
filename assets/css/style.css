@@ -38,7 +38,7 @@ body::before {
 }
 
 .net-sec-btn {
-    background-color: var(--sec-color);
+    background-color: var(--color-dark);
     color: var(--color-white);
 }
 
