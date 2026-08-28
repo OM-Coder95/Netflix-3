@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+        integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+    <div class="container pt-5 mb-5">
+        <div class="row">
+            <div class="col-md-6">
+                <a href="index.html" class="logo"><img src="./assets/img/netflixLogo.svg" alt="NetflixLogo"
+                        title="NetflixLogo"></a>
+            </div>
+            <div class="col-md-6 text-right align-self-center">
+                <button class="btn btn-sm net-pri-btn" id="showMovieModal">Add Movie</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Card -->
+    <div class="container">
+        <div class="row">
+
+            <!-- <div class="col-md-3">
+                <div class="card movieCard">
+                    <div class="card-header d-flex justify-content-between">
+                        <h4 class="m-0 ">Movieddddddddddd Name</h4>
+                        <h5 class="m-0"><span class="badge badge-success">4</span></h5>
+                    </div>
+                    <div class="card-body py-0">
+                        <figure class="m-0">
+                            <img src="./assets/img/sitaraman.jpg" alt="Sita Raman">
+                            <figcaption>
+                                <h4 class="m-0">Movie Name</h4>
+                                <p class="m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur quae cum
+                                    similiquedfd Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, ab.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat mollitia vitae
+                                    eaque adipisci quo nulla amet sit, repudiandae temporibus animi voluptates deserunt
+                                    aperiam commodi ipsam veniam molestias inventore porro.
+                                    non aliquam minus accusamus quam eius voluptatum saepe?</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between ">
+                        <button class="btn btn-sm net-sec-btn">Edit</button>
+                        <button class="btn btn-sm net-pri-btn">Remove</button>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+    </div>
+
+    <div class="backdrop" id="backdrop"></div>
+
+    <div class="movieModal" id="movieModal">
+        <form id="form">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h4 class="m-0">Add Movie</h4>
+                    <i role="button" class="fa-solid fa-xmark fa-2x" id="closeMovieModalIcon"></i>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="original_title">Movie Name</label>
+                        <input type="text" class="form-control" id="original_title">
+                    </div>
+                    <div class="form-group">
+                        <label for="backdrop_path">Movie Image</label>
+                        <input type="text" class="form-control" id="backdrop_path">
+                    </div>
+                    <div class="form-group">
+                        <label for="overview">Movie Description</label>
+                        <textarea class="form-control" rows="3" id="overview"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="vote_average">Movie Rating</label>
+                        <select class="form-control" id="vote_average">
+                            <option value="">Select Rating</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button type="submit" class="btn btn-sm net-sec-btn" id="addMovieBtn">Add Movie</button>
+                    <button type="button" class="btn btn-sm net-pri-btn" id="movieModalCloseBtn">Close</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/data.js"></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>
