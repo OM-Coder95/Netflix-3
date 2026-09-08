@@ -19,7 +19,7 @@ const updateMovieBtn = document.getElementById("updateMovieBtn");
 
 let jsonArray = localStorage.getItem("movieArray3");
 
-let movieArray = jsonArray ? JSON.parse(jsonArray) : [];
+let movieArray3 = jsonArray ? JSON.parse(jsonArray) : [];
 
 // function
 
@@ -33,7 +33,7 @@ function showHideMovieModal(event) {
 // set array in local Storage
 
 function saveMovieArray() {
-  localStorage.setItem("movieArray", JSON.stringify(movieArray));
+  localStorage.setItem("movieArray3", JSON.stringify(movieArray3));
 }
 
 // resetForm()
@@ -88,7 +88,7 @@ function showOnUI(arr) {
   movieCardContainer.innerHTML = result;
 }
 
-showOnUI(movieArray);
+showOnUI(movieArray3);
 
 // Create
 
@@ -118,7 +118,7 @@ function onMovieAdd(event) {
     vote_average: vote_average.value,
   };
 
-  movieArray.unshift(newMovie);
+  movieArray3.unshift(newMovie);
   saveMovieArray();
   Swal.fire({
     title: "Movie Added!",
@@ -206,10 +206,10 @@ function onMovieUpdate() {
     vote_average: vote_average.value,
   };
 
-  let getIndex = movieArray.findIndex((ele) => String(ele.id) === updateId);
+  let getIndex = movieArray3.findIndex((ele) => String(ele.id) === updateId);
   if (getIndex === -1) return;
 
-  movieArray[getIndex] = updatedObj;
+  movieArray3[getIndex] = updatedObj;
   saveMovieArray();
   Swal.fire({
     title: "Movie Updated!",
@@ -261,7 +261,7 @@ function removeMovie(ele) {
       let getIndex = movieArray.findIndex((ele) => String(ele.id) === removeId);
       if (getIndex === -1) return;
 
-      movieArray.splice(getIndex, 1);
+      movieArray3.splice(getIndex, 1);
       saveMovieArray();
       Swal.fire({
         title: "Movie Removed!",
