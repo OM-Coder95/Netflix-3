@@ -17,9 +17,9 @@ const updateMovieBtn = document.getElementById("updateMovieBtn");
 
 // Data Base
 
-let movieArray2 = movieArray;
+let movieArray3 = movieArray;
 
-localStorage.setItem("movieArray2", JSON.stringify(movieArray2));
+localStorage.setItem("movieArray3", JSON.stringify(movieArray3));
 
 // function
 
@@ -70,7 +70,7 @@ function showOnUI(arr) {
                     </div>
                     <div class="card-body py-0">
                         <figure class="m-0">
-                            <img src="https://image.tmdb.org/t/p/w500/${ele.backdrop_path || ele.poster_path}" alt="${ele.original_title}">
+                            <img src="${ele.backdrop_path || ele.poster_path}" alt="${ele.original_title}">
                             <figcaption>
                                 <h4 class="m-0">${ele.original_title}</h4>
                                 <p class="m-0">${ele.overview}</p>
@@ -142,7 +142,7 @@ function onMovieAdd(event) {
                     </div>
                     <div class="card-body py-0">
                         <figure class="m-0">
-                            <img src="https://image.tmdb.org/t/p/w500/${newMovie.backdrop_path || newMovie.poster_path}" alt="${newMovie.original_title}">
+                            <img src="${newMovie.backdrop_path || newMovie.poster_path}" alt="${newMovie.original_title}">
                             <figcaption>
                                 <h4 class="m-0">${newMovie.original_title}</h4>
                                 <p class="m-0">${newMovie.overview}</p>
@@ -230,7 +230,7 @@ function onMovieUpdate() {
                     </div>
                     <div class="card-body py-0">
                         <figure class="m-0">
-                            <img src="https://image.tmdb.org/t/p/w500/${updatedObj.backdrop_path || updatedObj.poster_path}" alt="${updatedObj.original_title}">
+                            <img src="${updatedObj.backdrop_path || updatedObj.poster_path}" alt="${updatedObj.original_title}">
                             <figcaption>
                                 <h4 class="m-0">${updatedObj.original_title}</h4>
                                 <p class="m-0">${updatedObj.overview}</p>
