@@ -62,6 +62,7 @@ body::before {
 .movieCard {
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
+    overflow: hidden;
 }
 
 .movieCard h4 {
@@ -75,6 +76,7 @@ body::before {
 .movieCard figure {
     height: 300px;
     position: relative;
+    overflow: hidden;
 }
 
 .movieCard figure img {
@@ -142,4 +144,20 @@ body::before {
 
 .movieModal.active {
     transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+
+    .movieModal {
+        top: 2vh;
+        left: 5%;
+        width: 90%;
+        max-height: 96vh;
+    }
+
+    .movieModal .card-body {
+        max-height: 65vh;
+        overflow-y: auto;
+    }
+
 }
