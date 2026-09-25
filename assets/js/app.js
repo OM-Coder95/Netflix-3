@@ -1,6 +1,6 @@
 const cl = console.log;
 
-const showMovieModal = document.getElementById("showMovieModal");
+const showMovieModalBtn = document.getElementById("showMovieModal");
 const backdrop = document.getElementById("backdrop");
 const movieModal = document.getElementById("movieModal");
 const closeMovieModalIcon = document.getElementById("closeMovieModalIcon");
@@ -23,11 +23,20 @@ let movieArray3 = jsonArray ? JSON.parse(jsonArray) : [];
 
 // function
 
-// show Hide movieModal
+// show movieModal
 
-function showHideMovieModal(event) {
-  backdrop.classList.toggle("active");
-  movieModal.classList.toggle("active");
+function showMovieModal() {
+  resetForm();
+
+  backdrop.classList.add("active");
+  movieModal.classList.add("active");
+}
+
+// hide movieModal
+
+function hideMovieModal() {
+  backdrop.classList.remove("active");
+  movieModal.classList.remove("active");
 }
 
 // set array in local Storage
@@ -48,6 +57,8 @@ function resetForm() {
 // showOnUI
 
 function setRating(rating) {
+  rating = Number(rating);
+
   if (rating > 7) {
     return "badge-success";
   } else if (rating > 5) {
@@ -110,6 +121,16 @@ function onMovieAdd(event) {
     return;
   }
 
+  if (Number(vote_average.value) > 9 || Number(vote_average.value) < 0) {
+    Swal.fire({
+      title: "Invalid Rating!",
+      text: "Please select a rating between 0 and 9.",
+      icon: "warning",
+      timer: 2000,
+    });
+    return;
+  }
+
   let newMovie = {
     id: crypto.randomUUID(),
     original_title: original_title.value,
@@ -126,9 +147,6 @@ function onMovieAdd(event) {
     icon: "success",
     timer: 2000,
   });
-  form.reset();
-  showHideMovieModal();
-
   //   show on UI
   let div = document.createElement("div");
 
@@ -163,10 +181,10 @@ function onMovieAdd(event) {
 
 function editMovie(ele) {
   let editId = ele.closest(".movieCard").id;
-  showHideMovieModal();
+  showMovieModal();
   localStorage.setItem("editId", editId);
 
-  let editObj = movieArray.find((ele) => String(ele.id) === editId);
+  let editObj = movieArray3.find((ele) => String(ele.id) === editId);
   if (!editObj) return;
 
   original_title.value = editObj.original_title;
@@ -198,6 +216,16 @@ function onMovieUpdate() {
     return;
   }
 
+  if (Number(vote_average.value) > 9 || Number(vote_average.value) < 0) {
+    Swal.fire({
+      title: "Invalid Rating!",
+      text: "Please select a rating between 0 and 9.",
+      icon: "warning",
+      timer: 2000,
+    });
+    return;
+  }
+
   let updatedObj = {
     id: updateId,
     original_title: original_title.value,
@@ -211,6 +239,7 @@ function onMovieUpdate() {
 
   movieArray3[getIndex] = updatedObj;
   saveMovieArray();
+  hideMovieModal();
   Swal.fire({
     title: "Movie Updated!",
     text: "Movie has been updated successfully.",
@@ -218,7 +247,6 @@ function onMovieUpdate() {
     timer: 2000,
   });
   form.reset();
-  showHideMovieModal();
   updateMovieBtn.classList.add("d-none");
   addMovieBtn.classList.remove("d-none");
   localStorage.removeItem("editId");
@@ -258,7 +286,9 @@ function removeMovie(ele) {
     cancelButtonText: "Cancel",
   }).then((result) => {
     if (result.isConfirmed) {
-      let getIndex = movieArray.findIndex((ele) => String(ele.id) === removeId);
+      let getIndex = movieArray3.findIndex(
+        (ele) => String(ele.id) === removeId,
+      );
       if (getIndex === -1) return;
 
       movieArray3.splice(getIndex, 1);
@@ -275,13 +305,9 @@ function removeMovie(ele) {
   });
 }
 
-showMovieModal.addEventListener("click", showHideMovieModal);
-backdrop.addEventListener("click", showHideMovieModal);
-closeMovieModalIcon.addEventListener("click", showHideMovieModal);
-movieModalCloseBtn.addEventListener("click", showHideMovieModal);
+showMovieModalBtn.addEventListener("click", showMovieModal);
+backdrop.addEventListener("click", hideMovieModal);
+closeMovieModalIcon.addEventListener("click", hideMovieModal);
+movieModalCloseBtn.addEventListener("click", hideMovieModal);
 form.addEventListener("submit", onMovieAdd);
 updateMovieBtn.addEventListener("click", onMovieUpdate);
-
-backdrop.addEventListener("click", resetForm);
-closeMovieModalIcon.addEventListener("click", resetForm);
-movieModalCloseBtn.addEventListener("click", resetForm);
